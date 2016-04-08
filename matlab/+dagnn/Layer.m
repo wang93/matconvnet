@@ -99,7 +99,7 @@ classdef Layer < handle
       net = obj.net ;
 
       inputs = {net.vars(in).value} ;
-      derOutputs = {net.vars(out).der} ;
+      derOutputs = {net.vars(out).der} ; 
       for i = 1:numel(derOutputs)
         if isempty(derOutputs{i}), return ; end
       end
@@ -217,6 +217,9 @@ classdef Layer < handle
       for param = net.layers(index).params
         net.addParam(char(param)) ;
         p = net.getParamIndex(char(param)) ;
+      end
+      if isa(obj,'dagnn.SubNet')
+          net.addSubNet(obj);
       end
     end
 

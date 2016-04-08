@@ -32,5 +32,7 @@ end
 for layer = obj.layers(obj.executionOrder)
   in = layer.inputIndexes ;
   out = layer.outputIndexes ;
-  sizes(out) = layer.block.getOutputSizes(sizes(in)) ;
+
+     sizes(out) = layer.block.getOutputSizes(sizes(in)) ;
+
 end
