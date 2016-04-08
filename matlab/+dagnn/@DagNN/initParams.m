@@ -10,6 +10,10 @@ function initParams(obj)
 % the terms of the BSD license (see the COPYING file).
 
 for l = 1:numel(obj.layers)
+    if isa(obj.layers(l).block,'dagnn.SubNet')
+        obj.layers(l).block.subnet.initParams();
+        continue
+    end
   p = obj.getParamIndex(obj.layers(l).params) ;
   params = obj.layers(l).block.initParams() ;
   switch obj.device
@@ -18,5 +22,6 @@ for l = 1:numel(obj.layers)
     case 'gpu'
       params = cellfun(@gpuArray, params, 'UniformOutput', false) ;
   end
+  %[obj.params(p).value] = deal(params{:}) ;
   [obj.params(p).value] = deal(params{:}) ;
 end

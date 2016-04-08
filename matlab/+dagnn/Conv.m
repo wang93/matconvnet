@@ -41,7 +41,7 @@ classdef Conv < dagnn.Filter
       end
     end
 
-    function set.size(obj, ksize)
+    function set_size(obj, ksize)
       % make sure that ksize has 4 dimensions
       ksize = [ksize(:)' 1 1 1 1] ;
       obj.size = ksize(1:4) ;
@@ -54,6 +54,7 @@ classdef Conv < dagnn.Filter
       obj.size = obj.size ;
       obj.stride = obj.stride ;
       obj.pad = obj.pad ;
+      obj.hasBias= obj.hasBias;
     end
   end
 end
